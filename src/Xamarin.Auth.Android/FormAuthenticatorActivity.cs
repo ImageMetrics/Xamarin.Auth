@@ -13,7 +13,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 //
-using System;
+//using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,6 +24,7 @@ using Android.OS;
 using Android.Widget;
 using Android.Util;
 using Xamarin.Utilities.Android;
+using Android.Net;
 
 namespace Xamarin.Auth
 {
@@ -189,7 +190,7 @@ namespace Xamarin.Auth
 			}
 		}
 
-		void HandleSignIn (object sender, EventArgs e)
+		void HandleSignIn (object sender, System.EventArgs e)
 		{
 			if (state.IsSigningIn) return;
 
@@ -229,9 +230,9 @@ namespace Xamarin.Auth
 			}, TaskScheduler.FromCurrentSynchronizationContext ());
 		}
 
-		void HandleCreateAccount (object sender, EventArgs e)
+		void HandleCreateAccount (object sender, System.EventArgs e)
 		{
-			var intent = new Intent (Intent.ActionView, Android.Net.Uri.Parse (state.Authenticator.CreateAccountLink.AbsoluteUri));
+			var intent = new Intent (Intent.ActionView, Uri.Parse (state.Authenticator.CreateAccountLink.AbsoluteUri));
 			StartActivity (intent);
 		}
 

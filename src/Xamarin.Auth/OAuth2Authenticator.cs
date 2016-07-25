@@ -213,7 +213,7 @@ namespace Xamarin.Auth
 				"{0}?client_id={1}&redirect_uri={2}&response_type={3}&scope={4}&state={5}",
 				authorizeUrl.AbsoluteUri,
 				Uri.EscapeDataString (clientId),
-				Uri.EscapeDataString (RedirectUrl.AbsoluteUri),
+				Uri.EscapeDataString (RedirectUrl.OriginalString),
 				IsImplicit ? "token" : "code",
 				Uri.EscapeDataString (scope),
 				Uri.EscapeDataString (requestState)));
@@ -316,7 +316,7 @@ namespace Xamarin.Auth
 			var queryValues = new Dictionary<string, string> {
 				{ "grant_type", "authorization_code" },
 				{ "code", code },
-				{ "redirect_uri", RedirectUrl.AbsoluteUri },
+				{ "redirect_uri", RedirectUrl.OriginalString },
 				{ "client_id", clientId },
 			};
 			if (!string.IsNullOrEmpty (clientSecret)) {
